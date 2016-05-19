@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Map Maker</h1>
+    <p class="lead">Start By Importing Your Data Below</p>
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <h2>Comma Separated Text</h2>
+        <form class="form" action="{{ url_for('import_text_data') }}" method="POST">
+            <div class="form-group">
+                <label for="locationData">Location Data</label>
+                <textarea class="form-control" id="locationData" name="locationData" placeholder="54.596278,-5.930150">54.596278,-5.930150</textarea>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary">Make!</button>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}
