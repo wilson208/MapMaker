@@ -6,6 +6,41 @@
     </div>
     <div class="col-lg-9">
         <h2>MAP</h2>
+        <div id="map" style="width: 100%; min-height: 500px"></div>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ config.GOOGLE_MAPS_API_KEY }}&callback=initMap">
+</script>
+
+<script type="text/javascript">
+    var map = null;
+    var markersJson = {{ markers|tojson|safe }};
+    
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'));
+
+        var markers = [];
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < markersJson.length; i++) {
+            var marker = new google.maps.Marker({
+                position: { lat: parseFloat(markersJson[i].lat), lng: parseFloat(markersJson[i].lng) },
+                map: map
+            });
+            markers.push(marker);
+            bounds.extend(marker.getPosition());
+        }
+
+        //Set map position and zoom based on bounds built using markers. Then zoom out so none are on the edge
+        map.fitBounds(bounds);
+        if (markers.length === 1) {
+            map.setZoom(10);
+        }
+
+    }
+</script>
+
 {% endblock %}
