@@ -234,3 +234,10 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+MapMaker/MapMaker/env/.ptvs
+MapMaker/MapMaker/env/Lib/site-packages
+*.pyc
+MapMaker/MapMaker/ptvs_virtualenv_proxy.py
+MapMaker/MapMaker/web.config
+MapMaker/MapMaker/web.debug.config
+MapMaker/MapMaker/MapMaker/configmodule.py
